@@ -12,44 +12,68 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 80px;
         }
+
         .form-container {
             max-width: 800px;
             width: 100%;
             padding: 2rem;
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
-        #save{
+        #save, #update, #delete, #clear {
             border: saddlebrown 3px solid;
             background-color: #f8f9fa;
             color: black;
             font-weight: bold;
         }
-        #update{
-            border: saddlebrown 3px solid;
-            background-color: #f8f9fa;
-            color: black;
-            font-weight: bold;
 
+        h2 {
+            color: saddlebrown;
         }
-        #delete{
-            border: saddlebrown 3px solid;
-            background-color: #f8f9fa;
-            color: black;
-            font-weight: bold;
+
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
         }
-        #clear{
-            border: saddlebrown 3px solid;
-            background-color: #f8f9fa;
-            color: black;
-            font-weight: bold;
-        }
+
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Coffee</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="CustomerForm.html">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ItemForm.html">Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#menu">Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="form-container">
     <h2 class="text-center">Customer Details Form</h2>
