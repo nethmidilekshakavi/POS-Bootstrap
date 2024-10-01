@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background: url("https://example.com/coffee-background.jpg") no-repeat center center fixed;
+            background-color: #2c1a16;
             background-size: cover;
             font-family: 'Arial', sans-serif;
             color: #333;
@@ -17,7 +17,7 @@
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            max-width: 800px;
+            max-width: 1800px;
             margin-top: 80px;
         }
         h2 {
@@ -41,13 +41,38 @@
             width: 100%;
             z-index: 999;
         }
-        /* Styling for the total price */
         #total {
             color: red;
             font-size: 1.5em;
             font-weight: bold;
             margin-top: 20px;
             text-align: center;
+        }
+        .text-center {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #2c1a16;
+            color: #f8f9fa;
+            font-weight: bold;
+        }
+        #confirmOrder {
+            background-color: #7b5e57;
+            border: solid 5px #2c1a16;
+        }
+        /* Centering the image */
+        #orderImage {
+            display: block;
+            margin: 20px auto; /* Center the image horizontally */
+            max-width: 100%; /* Responsive image */
+            height: auto;
+        }
+        #orderImage{
+            height: 290px;
+            width: 300px;
+            box-shadow: 10px 10px 10px;
+            border-radius: 100%
         }
     </style>
 </head>
@@ -75,67 +100,78 @@
 </nav>
 <div class="container mt-5">
     <h2 class="text-center">Place Your Coffee Order</h2>
-    <form id="orderForm">
-        <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+    <div class="row">
+        <!-- Left Column: Order Form -->
+        <div class="col-md-6">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="coffee">Select Coffee</label>
+                    <select class="form-control" id="coffee" required>
+                        <option value="">Choose...</option>
+                        <option value="espresso">Espresso</option>
+                        <option value="latte">Latte</option>
+                        <option value="cappuccino">Cappuccino</option>
+                        <option value="americano">Americano</option>
+                        <option value="mocha">Mocha</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="size">Select Size</label>
+                    <select class="form-control" id="size" required>
+                        <option value="">Choose...</option>
+                        <option value="small" data-price="2">Small</option>
+                        <option value="medium" data-price="3">Medium</option>
+                        <option value="large" data-price="4">Large</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" min="1" placeholder="Enter quantity" required>
+                </div>
+                <button class="btn btn-primary btn-block">Submit Order</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-        </div>
-        <div class="form-group">
-            <label for="coffee">Select Coffee</label>
-            <select class="form-control" id="coffee" required>
-                <option value="">Choose...</option>
-                <option value="espresso">Espresso</option>
-                <option value="latte">Latte</option>
-                <option value="cappuccino">Cappuccino</option>
-                <option value="americano">Americano</option>
-                <option value="mocha">Mocha</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="size">Select Size</label>
-            <select class="form-control" id="size" required>
-                <option value="">Choose...</option>
-                <option value="small" data-price="2">Small</option>
-                <option value="medium" data-price="3">Medium</option>
-                <option value="large" data-price="4">Large</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="quantity">Quantity</label>
-            <input type="number" class="form-control" id="quantity" min="1" placeholder="Enter quantity" required>
-        </div>
-        <div class="form-group">
-            <label for="address">Delivery Address</label>
-            <textarea class="form-control" id="address" rows="3" placeholder="Enter your delivery address" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Submit Order</button>
-    </form>
 
-    <!-- Total Display -->
-    <div id="total" class="text-center">Total: $0.00</div>
+        <!-- Right Column: Order Summary -->
+        <div class="col-md-6">
+            <h3 class="text-center">Order Details</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Coffee</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody id="orderDetails">
+                    <tr>
+                        <td colspan="4" class="text-center">No order placed yet.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="total" class="text-center">Total: $0.00</div>
+            <button id="confirmOrder" class="btn btn-primary btn-block mt-3" disabled>Confirm Order</button>
+
+            <!-- Image centered below the button -->
+            <img id="orderImage" src="Assert/fee4cce7dc43130579d79d0145ca99af.jpg" alt="Coffee Order" />
+        </div>
+    </div>
 </div>
-
-<script>
-    document.getElementById('orderForm').addEventListener('input', function() {
-        const sizeElement = document.getElementById('size');
-        const selectedSize = sizeElement.options[sizeElement.selectedIndex];
-        const pricePerCup = parseFloat(selectedSize.getAttribute('data-price')) || 0;
-        const quantity = parseFloat(document.getElementById('quantity').value) || 0;
-
-        const total = pricePerCup * quantity;
-
-        // Display the total in red
-        document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
-    });
-</script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
