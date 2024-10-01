@@ -13,26 +13,26 @@
             color: #333;
         }
         .container {
-            background: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             max-width: 800px;
-            margin-top: 80px; /* Space from the top */
+            margin-top: 80px;
         }
         h2 {
-            color: #6F4C3E; /* Coffee brown color */
+            color: #6F4C3E;
             margin-bottom: 20px;
         }
         .form-group label {
             font-weight: bold;
         }
         .btn-primary {
-            background-color: #6F4C3E; /* Coffee brown */
+            background-color: #6F4C3E;
             border: none;
         }
         .btn-primary:hover {
-            background-color: #5a3e33; /* Darker shade on hover */
+            background-color: #5a3e33;
         }
         .navbar {
             position: fixed;
@@ -40,6 +40,14 @@
             left: 0;
             width: 100%;
             z-index: 999;
+        }
+        /* Styling for the total price */
+        #total {
+            color: red;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -67,7 +75,7 @@
 </nav>
 <div class="container mt-5">
     <h2 class="text-center">Place Your Coffee Order</h2>
-    <form>
+    <form id="orderForm">
         <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
@@ -95,9 +103,9 @@
             <label for="size">Select Size</label>
             <select class="form-control" id="size" required>
                 <option value="">Choose...</option>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
+                <option value="small" data-price="2">Small</option>
+                <option value="medium" data-price="3">Medium</option>
+                <option value="large" data-price="4">Large</option>
             </select>
         </div>
         <div class="form-group">
@@ -110,7 +118,24 @@
         </div>
         <button type="submit" class="btn btn-primary btn-block">Submit Order</button>
     </form>
+
+    <!-- Total Display -->
+    <div id="total" class="text-center">Total: $0.00</div>
 </div>
+
+<script>
+    document.getElementById('orderForm').addEventListener('input', function() {
+        const sizeElement = document.getElementById('size');
+        const selectedSize = sizeElement.options[sizeElement.selectedIndex];
+        const pricePerCup = parseFloat(selectedSize.getAttribute('data-price')) || 0;
+        const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+
+        const total = pricePerCup * quantity;
+
+        // Display the total in red
+        document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
