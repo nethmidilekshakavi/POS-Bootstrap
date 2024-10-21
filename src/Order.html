@@ -3,178 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Coffee Shop Order Form</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #2c1a16;
-            background-size: cover;
-            font-family: 'Arial', sans-serif;
-            color: #333;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            max-width: 1800px;
-            margin-top: 80px;
-        }
-        h2 {
-            color: #6F4C3E;
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            font-weight: bold;
-        }
-        .btn-primary {
-            background-color: #6F4C3E;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #5a3e33;
-        }
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
-        }
-        #total {
-            color: red;
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .text-center {
-            font-weight: bold;
-        }
 
-        .btn-primary {
-            background-color: #2c1a16;
-            color: #f8f9fa;
-            font-weight: bold;
+    <style>
+        .navbar {
+            background-color: #6f4c3e; /* Coffee color */
         }
-        #confirmOrder {
-            background-color: #7b5e57;
-            border: solid 5px #2c1a16;
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
         }
-        /* Centering the image */
-        #orderImage {
-            display: block;
-            margin: 20px auto; /* Center the image horizontally */
-            max-width: 100%; /* Responsive image */
-            height: auto;
+        .nav-link:hover {
+            color: #f8e8d0 !important; /* Light coffee color */
         }
-        #orderImage{
-            height: 290px;
-            width: 300px;
-            box-shadow: 10px 10px 10px;
-            border-radius: 100%
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #6f4c3e;
         }
     </style>
+
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard.html">DashBoard</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="CustomerForm.html">Customer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="ItemForm.html">Item</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Order.html">Order</a>
-                </li>
-            </ul>
-        </div>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">☕ Coffee Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="CustomerForm.html">Customer</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="ItemForm.html">Item</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Order.html">Reservation</a>
+            </li>
+        </ul>
     </div>
 </nav>
 <div class="container mt-5">
-    <h2 class="text-center">Place Your Coffee Order</h2>
-    <div class="row">
-        <!-- Left Column: Order Form -->
-        <div class="col-md-6">
-            <form id="orderForm">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-                </div>
-                <div class="form-group">
-                    <label for="coffee">Select Coffee</label>
-                    <select class="form-control" id="coffee" required>
-                        <option value="">Choose...</option>
-                        <option value="espresso">Espresso</option>
-                        <option value="latte">Latte</option>
-                        <option value="cappuccino">Cappuccino</option>
-                        <option value="americano">Americano</option>
-                        <option value="mocha">Mocha</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="size">Select Size</label>
-                    <select class="form-control" id="size" required>
-                        <option value="">Choose...</option>
-                        <option value="small" data-price="2">Small</option>
-                        <option value="medium" data-price="3">Medium</option>
-                        <option value="large" data-price="4">Large</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Quantity</label>
-                    <input type="number" class="form-control" id="quantity" min="1" placeholder="Enter quantity" required>
-                </div>
-                <button class="btn btn-primary btn-block">Submit Order</button>
-            </form>
+    <h1 class="text-center">Coffee Shop Order Form</h1>
+    <form id="orderForm">
+        <div class="form-group">
+            <label for="customerName">Name:</label>
+            <input type="text" class="form-control" id="customerName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="customerEmail">Email:</label>
+            <input type="email" class="form-control" id="customerEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="customerPhone">Phone Number:</label>
+            <input type="tel" class="form-control" id="customerPhone" placeholder="Enter your phone number" required>
         </div>
 
-        <!-- Right Column: Order Summary -->
-        <div class="col-md-6">
-            <h3 class="text-center">Order Details</h3>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Coffee</th>
-                        <th>Size</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>
-                    </thead>
-                    <tbody id="orderDetails">
-                    <tr>
-                        <td colspan="4" class="text-center">No order placed yet.</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div id="total" class="text-center">Total: $0.00</div>
-            <button id="confirmOrder" class="btn btn-primary btn-block mt-3" disabled>Confirm Order</button>
-
-            <!-- Image centered below the button -->
-            <img id="orderImage" src="Assert/fee4cce7dc43130579d79d0145ca99af.jpg" alt="Coffee Order" />
+        <h4>Select Your Items:</h4>
+        <div class="form-group">
+            <label for="coffeeType">Coffee Type:</label>
+            <select class="form-control" id="coffeeType" required>
+                <option value="" disabled selected>Select coffee type</option>
+                <option value="Espresso">Espresso</option>
+                <option value="Latte">Latte</option>
+                <option value="Cappuccino">Cappuccino</option>
+                <option value="Americano">Americano</option>
+                <option value="Mocha">Mocha</option>
+                <option value="Cold Brew">Cold Brew</option>
+            </select>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" required min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="specialRequests">Special Requests:</label>
+            <textarea class="form-control" id="specialRequests" rows="3" placeholder="Enter any special requests (optional)"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="submitOrder()">Place Order</button>
+    </form>
+
+    <h2 class="mt-5">Order Summary</h2>
+    <table class="table table-bordered mt-3" id="orderTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Coffee Type</th>
+            <th>Quantity</th>
+            <th>Special Requests</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Order data will be inserted here -->
+        </tbody>
+    </table>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="lib/jquery-3.7.1.min.js"></script>
+
+<script>
+    function submitOrder() {
+        // Get form data
+        const customerName = document.getElementById('customerName').value;
+        const customerEmail = document.getElementById('customerEmail').value;
+        const customerPhone = document.getElementById('customerPhone').value;
+        const coffeeType = document.getElementById('coffeeType').value;
+        const quantity = document.getElementById('quantity').value;
+        const specialRequests = document.getElementById('specialRequests').value;
+
+        // Create a new row and cells
+        const table = document.getElementById('orderTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+        const cell5 = newRow.insertCell(4);
+        const cell6 = newRow.insertCell(5);
+
+        // Assign data to cells
+        cell1.textContent = customerName;
+        cell2.textContent = customerEmail;
+        cell3.textContent = customerPhone;
+        cell4.textContent = coffeeType;
+        cell5.textContent = quantity;
+        cell6.textContent = specialRequests;
+
+        // Clear the form
+        document.getElementById('orderForm').reset();
+    }
+</script>
+
 </body>
 </html>

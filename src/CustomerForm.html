@@ -3,139 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Customer Form</title>
+
+
     <style>
-        body {
-            background-color: #2c1a16;
-            background-size: cover;
-            height: 100vh;
-        }
-
-        .form-container, .table-container {
-            max-width: 800px;
-            width: 100%;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-
-        #save, #update, #delete, #clear {
-            border: solid 5px #4a3022;
-            background-color: white;
-            color: black;
-            font-weight: bold;
-        }
-
-        h2 {
-            color: saddlebrown;
-        }
-
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
+            background-color: #6f4c3e; /* Coffee color */
         }
-
-        .table th, .table td {
-            vertical-align: middle;
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
         }
-
+        .nav-link:hover {
+            color: #f8e8d0 !important; /* Light coffee color */
+        }
+        .dropdown-menu {
+            background-color: #6f4c3e; /* Match navbar color */
+        }
+        .dropdown-item:hover {
+            background-color: #5a3e32; /* Darker shade on hover */
+        }
     </style>
+
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard.html">DashBoard</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="CustomerForm.html">Customer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="ItemForm.html">Item</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Order.html">Order</a>
-                </li>
-
-            </ul>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">☕ Coffee Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="CustomerForm.html">Customer</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="ItemForm.html">Item</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Order.html">Reservation</a>
+            </li>
+        </ul>
     </div>
 </nav>
 
-<div class="container" style="margin-top: 80px;"> <!-- Added margin to avoid navbar overlap -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-container">
-                <h2 class="text-center">Customer Details Form</h2>
-                <form id="customerForm">
-                    <div class="mb-3">
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="phone" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <textarea class="form-control" id="address" rows="3" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="city" class="form-label">City</label>
-                        <input type="text" class="form-control" id="city" required>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <button id="save" type="submit" class="btn btn-primary">Save</button>
-                        <button id="update" type="button" class="btn btn-warning">Update</button>
-                        <button id="delete" type="button" class="btn btn-danger">Delete</button>
-                        <button id="clear" type="reset" class="btn btn-secondary">Clear</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="table-container">
-                <h2 class="text-center">Customer List</h2>
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>City</th>
-                    </tr>
-                    </thead>
-                    <tbody id="customerTableBody">
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="container mt-5">
+    <h1 class="text-center">Welcome to Our Coffee Shop!</h1>
+    <p class="text-center">Enjoy the finest brews and a cozy atmosphere.</p>
+    <!-- Other content can go here -->
+</div>
+<div class="container mt-5">
+    <h2>Customer Form</h2>
+    <form id="customerForm">
+        <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" class="form-control" id="Firstname" placeholder="Enter customer's First name" required>
+        </div> <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" class="form-control" id="Lastname" placeholder="Enter customer's Last name" required>
     </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea class="form-control" id="address" rows="3" placeholder="Enter customer's address" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter customer's email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter customer's phone number" required>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="save">SAVE</button>
+        <button type="button" class="btn btn-primary" style="background-color: green">UPDATE</button>
+        <button type="button" class="btn btn-primary" style="background-color: orange">DELETE</button>
+        <button type="button" class="btn btn-primary" style="background-color: darkred">CLEAR</button>
+    </form>
+
+    <h2 class="mt-5">Customer List</h2>
+    <table class="table table-bordered mt-3" id="customerTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody id="customerTableBody">
+        <!-- Customer data will be inserted here -->
+        </tbody>
+    </table>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+//add customer
+
+let customerArray = [];
+
+$("#save").on('click',function (){
+
+    let fn = $('#Firstname').val();
+    let ln = $('#Lastname').val();
+    let address = $('#address').val();
+    let email = $('#email').val();
+    let num = $('#phone').val();
+
+
+
+    let id = customerArray + 1;
+
+    let c = {
+
+        id:id,
+        fn : fn,
+        ln : ln,
+        address : address,
+        mobile : num,
+        email:email
+
+    }
+
+    customerArray.push(c)
+
+    loadCustonerTable();
+
+
+
+
+
+});
+
+const loadCustonerTable = () =>{
+
+    $("customerTableBody").empty();
+
+    customerArray.map((item,index) =>{
+
+        console.log(item);
+
+        let data =`<tr><td>${item.fn}</td>$<td>${item.ln}</td>$<td>${item.address}</td><td>${item.mobile}</td>$<td>${item.email}</td></tr>`
+
+
+        $("#customerTableBody").append(data)
+
+
+
+    })
+
+
+}
+
+</script>
 
 </body>
 </html>
