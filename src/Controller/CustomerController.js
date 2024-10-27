@@ -16,7 +16,7 @@ const validateTele = (num) =>{
     return sriLankanMobileRegex.test(num)
 }
 
-$("#save").on('click',function (){
+$("#save-customer").on('click',function (){
 
 
     let fn = $('#Firstname').val();
@@ -143,7 +143,7 @@ $('#customerTableBody').on('click' , 'tr' ,function (){
 
 
 // Update customer===============================================================================================
-$("#update").on('click', function () {
+$("#update-customer").on('click', function () {
     Swal.fire({
         title: "Do you want to save the changes?",
         showDenyButton: true,
@@ -219,7 +219,7 @@ const clearFields = () => {
 
 
 //delete======================================================================================================
-$("#delete").on("click", function() {
+$("#delete-customer").on("click", function() {
 
 
     Swal.fire({
@@ -251,5 +251,20 @@ $("#delete").on("click", function() {
             });
         }
     });
+
+});
+
+
+$("#clear-customer").on("click", function() {
+
+
+        $("#Firstname").val("");
+        $("#id").val("");
+        $("#Lastname").val("");
+        $("#phone").val("");
+        $("#address").val("");
+        $("#email").val("");
+
+
 
 });

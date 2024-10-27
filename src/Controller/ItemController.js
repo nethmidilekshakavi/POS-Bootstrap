@@ -4,7 +4,7 @@ import ItemModel from "../models/ItemModel.js";
 
 
 //save==============================================================================================
-$("#save").on('click',function (){
+$("#save-item").on('click',function (){
 
 
     let itemcode = $('#code').val();
@@ -101,7 +101,7 @@ $('#itemTableBody').on('click', 'tr', function () {
 
 //update==============================================================================================================
 
-$("#update").on('click', function () {
+$("#update-item").on('click', function () {
     Swal.fire({
         title: "Do you want to save the changes?",
         showDenyButton: true,
@@ -176,7 +176,7 @@ const clearFields = () => {
 
 //delete==========================================================================================
 
-$("#delete").on('click', function () {
+$("#delete-item").on('click', function () {
 
     Swal.fire({
         title: "Are you sure?",
@@ -210,7 +210,17 @@ $("#delete").on('click', function () {
             });
         }
     });
-
-
-
 });
+
+$("#clear-item").on('click', function () {
+
+
+    $("#itemCategory").val("")
+    $("#itemPrice").val("")
+    $("#itemDescription").val("")
+    $("#itemName").val("")
+    $("#code").val("")
+
+
+
+})
