@@ -55,43 +55,39 @@ $("#save").on('click',function (){
         });
     }
 
-    else if (!validateEmail()) {
+    else if (!validateEmail(email)) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Invalid Email!",
         });
     }
-    else if (!validateTele()) {
+    else if (!validateTele(num)) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Invalid Phone Number!",
         });
+    }else {
+
+
+        let customer = new CustomerModel(
+            customer_Array.length + 1,
+
+            fn, ln, address, email, num
+        )
+
+        customer_Array.push(customer)
+
+        loadCustonerTable();
+
+        $("#Firstname").val("")
+        $("#id").val("")
+        $("#Lastname").val("")
+        $("#phone").val("")
+        $("#address").val("")
+        $("#email").val("")
     }
-
-
-
-    let customer = new CustomerModel(
-
-        customer_Array.length +1,
-
-       fn,ln,address,email,num
-
-
-    )
-
-    customer_Array.push(customer)
-
-    $("#FirstName").val("")
-    $("#id").val("")
-    $("#Lastname").val("")
-    $("#phone").val("")
-    $("#address").val("")
-    $("#email").val("")
-
-    loadCustonerTable();
-
 });
 
 
@@ -128,8 +124,8 @@ $('#customerTableBody').on('click' , 'tr' ,function (){
     //click and load table textFiled
 
     let id = obiject.id;
-    let firstname =  obiject.fn;
-    let lastname =  obiject.ln;
+    let firstname =  obiject.first_name;
+    let lastname =  obiject.last_name;
     let phone =  obiject.mobile;
     let address =  obiject.address;
     let email =  obiject.email;
