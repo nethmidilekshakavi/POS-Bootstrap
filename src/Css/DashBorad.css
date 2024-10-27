@@ -1,0 +1,38 @@
+body {
+    background-color: #2c1a16; /* Dark coffee background */
+    color: white;
+}
+.management-btn {
+    background-color: #42251a;
+    border: 2px solid #7b5e57;
+    padding: 15px;
+    color: white;
+    font-size: 18px;
+    margin: 15px 0;
+    border-radius: 15px;
+}
+.management-btn:hover {
+    background-color: #7b5e57;
+    border-color: #42251a;
+}
+.coffee-card {
+    background-color: #5a3826;
+    border: none;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    width: 300px;
+    height: 300px;
+}
+.coffee-card img {
+    width: 300px;
+    height: 300px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.coffee-card .card-body {
+    background-color: #764e35;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 15px;
+    color: white;
+}

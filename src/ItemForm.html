@@ -5,29 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <title>Item Form</title>
-
-  <style>
-    .navbar {
-      background-color: #6f4c3e; /* Coffee color */
-    }
-    .navbar-brand, .nav-link {
-      color: #ffffff !important;
-    }
-    .nav-link:hover {
-      color: #f8e8d0 !important; /* Light coffee color */
-    }
-    .dropdown-menu {
-      background-color: #6f4c3e; /* Match navbar color */
-    }
-    .dropdown-item:hover {
-      background-color: #5a3e32; /* Darker shade on hover */
-    }
-    .form-control:focus {
-      box-shadow: none;
-      border-color: #6f4c3e;
-    }
-  </style>
-
+  <link rel="stylesheet" href="Css/Item.css">
 </head>
 <body>
 
@@ -62,6 +40,10 @@
   <h2>Add New Item</h2>
   <form id="itemForm">
     <div class="form-row">
+      <div class="form-group">
+        <label for="code">Code:</label>
+        <input type="text" class="form-control" id="code" placeholder="" required>
+      </div>
       <div class="form-group col-md-6">
         <label for="itemName">Item Name:</label>
         <input type="text" class="form-control" id="itemName" placeholder="Enter item name" required>

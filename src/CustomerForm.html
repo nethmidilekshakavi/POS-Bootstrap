@@ -4,26 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="sweetalert2.min.js"></script>
     <title>Customer Form</title>
-
-
-    <style>
-        .navbar {
-            background-color: #6f4c3e; /* Coffee color */
-        }
-        .navbar-brand, .nav-link {
-            color: #ffffff !important;
-        }
-        .nav-link:hover {
-            color: #f8e8d0 !important; /* Light coffee color */
-        }
-        .dropdown-menu {
-            background-color: #6f4c3e; /* Match navbar color */
-        }
-        .dropdown-item:hover {
-            background-color: #5a3e32; /* Darker shade on hover */
-        }
-    </style>
+    <link rel="stylesheet" href="Css/Customer.css">
 
 </head>
 <body>
@@ -58,6 +42,10 @@
 <div class="container mt-5">
     <h2>Customer Form</h2>
     <form id="customerForm">
+       <!-- <div class="form-group">
+            <label for="id">ID:</label>
+            <input type="text" class="form-control" id="id" placeholder="" required>
+        </div>-->
         <div class="form-group">
             <label for="firstname">First Name:</label>
             <input type="text" class="form-control" id="Firstname" placeholder="Enter customer's First name" required>
@@ -79,8 +67,8 @@
         </div>
 
         <button type="button" class="btn btn-primary" id="save">SAVE</button>
-        <button type="button" class="btn btn-primary" style="background-color: green">UPDATE</button>
-        <button type="button" class="btn btn-primary" style="background-color: orange">DELETE</button>
+        <button type="button" class="btn btn-primary" id="update" style="background-color: green">UPDATE</button>
+        <button type="button" class="btn btn-primary" id="delete" style="background-color: orange">DELETE</button>
         <button type="button" class="btn btn-primary" style="background-color: darkred">CLEAR</button>
     </form>
 
@@ -92,6 +80,7 @@
             <th>Email</th>
             <th>Phone Number</th>
             <th>Address</th>
+            <th>email</th>
         </tr>
         </thead>
         <tbody id="customerTableBody">
@@ -101,68 +90,11 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script type="module" src="Controller/CustomerController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script>
-//add customer
-
-let customerArray = [];
-
-$("#save").on('click',function (){
-
-    let fn = $('#Firstname').val();
-    let ln = $('#Lastname').val();
-    let address = $('#address').val();
-    let email = $('#email').val();
-    let num = $('#phone').val();
-
-
-
-    let id = customerArray + 1;
-
-    let c = {
-
-        id:id,
-        fn : fn,
-        ln : ln,
-        address : address,
-        mobile : num,
-        email:email
-
-    }
-
-    customerArray.push(c)
-
-    loadCustonerTable();
-
-
-
-
-
-});
-
-const loadCustonerTable = () =>{
-
-    $("customerTableBody").empty();
-
-    customerArray.map((item,index) =>{
-
-        console.log(item);
-
-        let data =`<tr><td>${item.fn}</td>$<td>${item.ln}</td>$<td>${item.address}</td><td>${item.mobile}</td>$<td>${item.email}</td></tr>`
-
-
-        $("#customerTableBody").append(data)
-
-
-
-    })
-
-
-}
-
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
+
