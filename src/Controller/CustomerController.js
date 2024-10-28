@@ -167,7 +167,7 @@ $("#update-customer").on('click', function () {
                 customer_Array[seletc_customer_index].mobile = num;
 
                 clearFields();
-                loadCustomerTable();
+                updateCustomerTable()
                 seletc_customer_index = null; // Reset index
 
                 Swal.fire("Saved!", "", "success");
@@ -185,7 +185,7 @@ $("#update-customer").on('click', function () {
 });
 
 // Load customer table
-const loadCustomerTable = () => {
+const updateCustomerTable = () => {
     $("#customerTableBody").empty();
     customer_Array.map((item) => {
         let data = `<tr><td>${item.first_name}</td><td>${item.last_name}</td><td>${item.address}</td><td>${item.mobile}</td><td>${item.email}</td></tr>`;
@@ -220,8 +220,6 @@ const clearFields = () => {
 
 //delete======================================================================================================
 $("#delete-customer").on("click", function() {
-
-
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -254,6 +252,7 @@ $("#delete-customer").on("click", function() {
 
 });
 
+//clear======================================================================================================
 
 $("#clear-customer").on("click", function() {
 
