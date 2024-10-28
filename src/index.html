@@ -2,121 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>POS</title>
+    <title>POS - Coffee Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="Css/Login.css">
     <link rel="stylesheet" href="Css/DashBorad.css">
-    <link rel="stylesheet" href="Css/Customer.css">
-    <link rel="stylesheet" href="Css/Item.css">
     <link rel="stylesheet" href="Css/Order.css">
+    <link rel="stylesheet" href="Css/navbar.css">
+
+    <style>
+        #navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        #navbar{
+            background-color: #6f4e37;
+
+        }
+
+section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        body {
+            padding-top:2px; /* Adjust padding based on fixed navbar height */
+        }
+
+    </style>
 
 </head>
-
-
-<style>
-    section {
-        display: none; /* Hide all sections by default */
-    }
-
-    #login {
-        display: block; /* Show the login section by default */
-    }
-
-</style>
-
 <body>
 
 
+<!--=========================================DashBoard===================================================================-->
 
+<section id="dashboard" class="container mt-5">
+    <h1 class="text-start mb-4">DASHBOARD</h1>
 
-
-<!--==========================================LOGIN====================================================================-->
-<section id="login">
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-5">
-            <div class="login-section text-center" id="login-form">
-                <h1 class="title">START YOUR DAY WITH A</h1>
-                <h2 class="subtitle">BLACK COFFEE</h2>
-
-                <form>
-                    <div class="mb-3">
-                        <input type="text" class="form-control login-input" placeholder="User Name" id="username">
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" class="form-control login-input" placeholder="Password" id="password">
-                    </div>
-                    <button type="submit" class="btn login-btn w-100">LOGIN</button>
-                </form>
-            </div>
-
-            <!-- Coffee Images Section (Under the form) -->
-            <div class="coffee-images d-none d-md-flex justify-content-between">
-                <!-- Add margin between the images -->
-                <img src="Assert/login/f75e1e7db86838c6cc07235f88eac1df.jpg" class="img-fluid me-2" alt="Coffee Image 1">
-                <img src="Assert/login/23b0c46066f8e880c282a6d5560fac14.jpg" class="img-fluid mx-2" alt="Coffee Image 2">
-                <img src="Assert/login/6ca08dadd3f24b77a5515b1b32800ee7.jpg" class="img-fluid ms-2" alt="Coffee Image 3">
-                <img src="Assert/login/d43d66f33277871f9e0bf72248d7bfb8.jpg" class="img-fluid ms-2" alt="Coffee Image 4">
-                <img src="Assert/login/a9681f493ac176665bc5a3817fecf6a2.jpg" class="img-fluid ms-2" alt="Coffee Image 5">
-            </div>
+    <div class="row text-center">
+        <div class="col-12">
+            <a href="#customer"><button class="management-btn w-100">Customer Management</button></a>
+            <a href="#item"><button class="management-btn w-100">Item Management</button></a>
+            <a href="#order"><button class="management-btn w-100">Order Management</button></a>
         </div>
     </div>
-</div>
-</section>
 
-<!--==========================================DashBoard====================================================================-->
-
-<section id="dashboard">
-    <div class="container mt-5">
-        <h1 class="text-start mb-4">DASHBOARD</h1>
-
-        <div class="row text-center">
-            <div class="col-12">
-                <a href="#customer"><button class="management-btn w-100">Customer Management</button></a>
-                <a href="#item"><button class="management-btn w-100">Item Management</button></a>
-                <a href="#order"><button class="management-btn w-100">Order Management</button></a>
+    <div class="row mt-5">
+        <div class="col-md-3 col-sm-6">
+            <div class="card coffee-card">
+                <img src="Assert/d43d66f33277871f9e0bf72248d7bfb8.jpg" class="card-img-top" alt="Black Coffee">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Black Coffee</h5>
+                    <p class="card-text">Rs. 1090</p>
+                </div>
             </div>
         </div>
 
-        <div class="row mt-5">
-            <!-- Coffee Cards -->
-            <div class="col-md-3 col-sm-6">
-                <div class="card coffee-card">
-                    <img src="Assert/d43d66f33277871f9e0bf72248d7bfb8.jpg" class="card-img-top" alt="Black Coffee">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Black Coffee</h5>
-                        <p class="card-text">Rs. 1090</p>
-                    </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card coffee-card">
+                <img src="Assert/fee4cce7dc43130579d79d0145ca99af.jpg" class="card-img-top" alt="Black Coffee">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Black Coffee</h5>
+                    <p class="card-text">Rs. 590</p>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="card coffee-card">
-                    <img src="Assert/fee4cce7dc43130579d79d0145ca99af.jpg" class="card-img-top" alt="Black Coffee">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Black Coffee</h5>
-                        <p class="card-text">Rs. 590</p>
-                    </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card coffee-card">
+                <img src="Assert/b3893763afb9e9225be0586a8e0f21b8.jpg" class="card-img-top" alt="Black Coffee">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Black Coffee</h5>
+                    <p class="card-text">Rs. 1590</p>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="card coffee-card">
-                    <img src="Assert/b3893763afb9e9225be0586a8e0f21b8.jpg" class="card-img-top" alt="Black Coffee">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Black Coffee</h5>
-                        <p class="card-text">Rs. 1590</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <div class="card coffee-card">
-                    <img src="Assert/a9681f493ac176665bc5a3817fecf6a2.jpg" class="card-img-top" alt="Black Coffee">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Black Coffee</h5>
-                        <p class="card-text">Rs. 990</p>
-                    </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card coffee-card">
+                <img src="Assert/a9681f493ac176665bc5a3817fecf6a2.jpg" class="card-img-top" alt="Black Coffee">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Black Coffee</h5>
+                    <p class="card-text">Rs. 990</p>
                 </div>
             </div>
         </div>
@@ -124,44 +98,44 @@
 </section>
 
 <!--==========================================NAV BAR====================================================================-->
-
-<section id="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">☕ Coffee Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#dashboard">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#customer">Customer</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="ItemForm.html">Item</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Order.html">Reservation</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</section>
-
-<!--==========================================Customer===================================================================-->
-
-<section id="customer">
-
-    <div class="container mt-5">
-        <h1 class="text-center">Welcome to Our Coffee Shop!</h1>
-        <p class="text-center">Enjoy the finest brews and a cozy atmosphere.</p>
-        <!-- Other content can go here -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar" style="background-color: #6f4e37">
+    <a class="navbar-brand" href="#dashboard">☕ Coffee Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#dashboard">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#customer">Customer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#item">Item</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#order">Order</a>
+            </li>
+        </ul>
     </div>
+</nav>
+
+
+<!--==========================================Customer====================================================================-->
+
+
+<section id="customer" class="container mt-5">
+    <br>
+    <h1 class="text-center">Welcome to Our Coffee Shop!</h1>
+    <p class="text-center">Enjoy the finest brews and a cozy atmosphere.</p>
     <div class="container mt-5">
         <h2>Customer Form</h2>
         <form id="customerForm">
+          <div class="form-group">
+            <label for="id">ID:</label>
+            <input type="text" class="form-control" id="id" placeholder="" required>
+        </div>
             <div class="form-group">
                 <label for="firstname">First Name:</label>
                 <input type="text" class="form-control" id="Firstname" placeholder="Enter customer's First name" required>
@@ -181,6 +155,7 @@
                 <label for="phone">Phone Number:</label>
                 <input type="tel" class="form-control" id="phone" placeholder="Enter customer's phone number" required>
             </div>
+            <br>
 
             <button type="button" class="btn btn-primary" id="save-customer">SAVE</button>
             <button type="button" class="btn btn-primary" id="update-customer" style="background-color: green">UPDATE</button>
@@ -202,21 +177,20 @@
             </tr>
             </thead>
             <tbody id="customerTableBody">
-            <!-- Customer data will be inserted here -->
             </tbody>
         </table>
     </div>
+
 </section>
 
-<!--==========================================Item===================================================================-->
 
-<section id="item">
+<!--=========================================Item===================================================================-->
 
-    <div class="container mt-5">
-        <h1 class="text-center">Welcome to Our Coffee Shop!</h1>
-        <p class="text-center">Enjoy the finest brews and a cozy atmosphere.</p>
-    </div>
 
+<section id="item" class="container mt-5">
+    <br>
+    <h1 class="text-center">Welcome to Our Coffee Shop!</h1>
+    <p class="text-center">Enjoy the finest brews and a cozy atmosphere.</p>
     <div class="container mt-5">
         <h2>Add New Item</h2>
         <form id="itemForm">
@@ -249,6 +223,7 @@
                     </select>
                 </div>
             </div>
+            <br>
             <button type="button" class="btn btn-primary" id="save-item">SAVE</button>
             <button type="button" class="btn btn-primary" id="update-item" style="background-color: green">UPDATE</button>
             <button type="button" class="btn btn-primary" id="delete-item" style="background-color: orange">DELETE</button>
@@ -267,113 +242,103 @@
             </tr>
             </thead>
             <tbody id="itemTableBody">
-            <!-- Item data will be inserted here -->
             </tbody>
         </table>
     </div>
 
-    <!--==========================================order===================================================================-->
+</section>
 
-    <section id="order">
-        <div class="container mt-5">
-            <h1 class="text-center">Coffee Shop Order Form</h1>
-            <form id="orderForm">
-                <div class="form-group">
-                    <label for="customerName">Name:</label>
-                    <input type="text" class="form-control" id="customerName" placeholder="Enter your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="customerEmail">Email:</label>
-                    <input type="email" class="form-control" id="customerEmail" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="customerPhone">Phone Number:</label>
-                    <input type="tel" class="form-control" id="customerPhone" placeholder="Enter your phone number" required>
-                </div>
+<!--==========================================Order===================================================================-->
 
-                <h4>Select Your Items:</h4>
-                <div class="form-group">
-                    <label for="coffeeType">Coffee Type:</label>
-                    <select class="form-control" id="coffeeType" required>
-                        <option value="" disabled selected>Select coffee type</option>
-                        <option value="Espresso">Espresso</option>
-                        <option value="Latte">Latte</option>
-                        <option value="Cappuccino">Cappuccino</option>
-                        <option value="Americano">Americano</option>
-                        <option value="Mocha">Mocha</option>
-                        <option value="Cold Brew">Cold Brew</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" required min="1">
-                </div>
-
-                <div class="form-group">
-                    <label for="specialRequests">Special Requests:</label>
-                    <textarea class="form-control" id="specialRequests" rows="3" placeholder="Enter any special requests (optional)"></textarea>
-                </div>
-
-                <button type="button" class="btn btn-primary" onclick="submitOrder()">Place Order</button>
-            </form>
-
-            <h2 class="mt-5">Order Summary</h2>
-            <table class="table table-bordered mt-3" id="orderTable">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Coffee Type</th>
-                    <th>Quantity</th>
-                    <th>Special Requests</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- Order data will be inserted here -->
-                </tbody>
-            </table>
+<section id="order" class="container mt-5">
+    <br>
+    <h1 class="text-center">Coffee Shop Order Form</h1>
+    <form id="orderForm">
+        <div class="form-group">
+            <label for="customerName">Name:</label>
+            <input type="text" class="form-control" id="customerName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="customerEmail">Email:</label>
+            <input type="email" class="form-control" id="customerEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="customerPhone">Phone Number:</label>
+            <input type="tel" class="form-control" id="customerPhone" placeholder="Enter your phone number" required>
         </div>
 
-    </section>
+        <h4>Select Your Items:</h4>
+        <div class="form-group">
+            <label for="coffeeType">Coffee Type:</label>
+            <select class="form-control" id="coffeeType" required>
+                <option value="" disabled selected>Select coffee type</option>
+                <option value="Espresso" data-price="3.00">Espresso</option>
+                <option value="Latte" data-price="4.00">Latte</option>
+                <option value="Cappuccino" data-price="4.50">Cappuccino</option>
+                <option value="Americano" data-price="2.50">Americano</option>
+                <option value="Mocha" data-price="4.75">Mocha</option>
+                <option value="Cold Brew" data-price="3.50">Cold Brew</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" required min="1">
+        </div>
 
 
+
+        <br>
+
+        <button type="button" class="btn btn-primary" onclick="submitOrder()">Place Order</button>
+    </form>
+
+    <h2 class="mt-5">Order Summary</h2>
+    <table class="table table-bordered mt-3" id="orderTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Coffee Type</th>
+            <th>Quantity</th>
+            <th>Total Cost</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </section>
 
 
-
 <script src="lib/jquery-3.7.1.min.js"></script>
+<script type="module" src="Controller/CustomerController.js"></script>
+<script type="module" src="Controller/ItemController.js"></script>
+<script src="Controller/OrderController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="Controller/Login.js"></script>
+
 <script>
-    // Get all navigation links
-    const navLinks = document.querySelectorAll('.nav-link');
+    document.addEventListener("DOMContentLoaded", function() {
+        const sections = document.querySelectorAll("section");
 
-    // Get all sections
-    const sections = document.querySelectorAll('section');
+        // Function to show the active section based on the hash
+        function navigate() {
+            const currentHash = window.location.hash || "#dashboard";
+            sections.forEach(section => {
+                section.style.display = section.id === currentHash.replace("#", "") ? "block" : "none";
+            });
+        }
 
-    // Function to show a specific section
-    function showSection(id) {
-        sections.forEach((section) => {
-            section.style.display = 'none'; // Hide all sections
-        });
-        document.querySelector(id).style.display = 'block'; // Show the targeted section
-    }
+        // Add an event listener for hash changes
+        window.addEventListener("hashchange", navigate);
 
-    // Add event listeners to each nav link
-    navLinks.forEach((link) => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent the default link behavior
-            const targetId = '#' + event.target.id.split('-')[0]; // Extract the section id from link id
-            showSection(targetId);
-        });
+        // Navigate to the initial hash (or default)
+        navigate();
     });
 
-    // Initial load to show the login section only
-    showSection('#login');
-
 </script>
+
 
 </body>
 </html>

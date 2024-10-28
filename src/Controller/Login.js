@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
 
     if (username === "admin" && passswrod === "1234"){
 
-        window.location.href = 'dashboard.html';
+        window.location.href = '../index.html';
 
     }else {
 
