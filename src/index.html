@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <title>POS - Coffee Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
-    <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="Css/Login.css">
     <link rel="stylesheet" href="Css/DashBorad.css">
     <link rel="stylesheet" href="Css/Order.css">
@@ -21,10 +19,9 @@
 
         #navbar{
             background-color: #6f4e37;
-
         }
 
-section {
+        section {
             display: none;
         }
 
@@ -33,7 +30,7 @@ section {
         }
 
         body {
-            padding-top:2px; /* Adjust padding based on fixed navbar height */
+            padding-top:2px;
         }
 
     </style>
@@ -256,12 +253,14 @@ section {
     <h1 class="text-center">Coffee Shop Order Form</h1>
     <form id="orderForm">
         <div class="form-group">
-            <label for="customerName">Name:</label>
-            <input type="text" class="form-control" id="customerName" placeholder="Enter your name" required>
+            <label for="customerId">Name:</label>
+            <select class="form-control" id="customerId" required>
+                <option value="" disabled selected>Select Customer Name</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="customerEmail">Email:</label>
-            <input type="email" class="form-control" id="customerEmail" placeholder="Enter your email" required>
+            <label for="customerName">Name:</label>
+            <input type="email" class="form-control" id="customerName" placeholder="Customer Name" required>
         </div>
         <div class="form-group">
             <label for="customerPhone">Phone Number:</label>
@@ -282,25 +281,21 @@ section {
             </select>
         </div>
 
-
         <div class="form-group">
             <label for="price">Price:</label>
-            <input type="number" class="form-control" id="price" placeholder="Enter price" required min="1">
+            <input type="text" class="form-control" id="price" placeholder="Enter price" required min="1">
         </div>
 
         <div class="form-group">
             <label for="quantity">Quantity:</label>
-            <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" required min="1">
+            <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" required min="1">
         </div>
 
-
-
         <br>
-
-        <button type="button" class="btn btn-primary" onclick="submitOrder()">Place Order</button>
+        <button type="button" class="btn btn-primary" id="order-save">Save Order</button>
     </form>
 
-    <h2 class="mt-5">Order Summary</h2>
+    <h2 class="mt-5">Order Details</h2>
     <table class="table table-bordered mt-3" id="orderTable">
         <thead>
         <tr>
@@ -313,15 +308,17 @@ section {
             <th>Total Cost</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="OrderTableBody">
         </tbody>
     </table>
 </section>
 
+<!--===============================================================================================================================-->
 
 <script src="lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script type="module" src="Controller/CustomerController.js"></script>
+<script src="db/database.js"></script>
 <script type="module" src="Controller/ItemController.js"></script>
 <script type="module" src="Controller/OrderController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -342,12 +339,10 @@ section {
         // Add an event listener for hash changes
         window.addEventListener("hashchange", navigate);
 
-        // Navigate to the initial hash (or default)
         navigate();
     });
 
 </script>
-
 
 </body>
 </html>

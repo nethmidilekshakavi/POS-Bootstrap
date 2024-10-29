@@ -7,8 +7,6 @@ export default class ItemModel {
         this._Desc =Desc;
         this._price = price;
         this._Category = Category;
-
-
     }
 
 
