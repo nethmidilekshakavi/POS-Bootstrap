@@ -1,12 +1,19 @@
 export default class ItemModel {
+    get qty() {
+        return this._qty;
+    }
 
-    constructor(code,itemName,Desc,price,Category) {
+    set qty(value) {
+        this._qty = value;
+    }
+
+    constructor(code,itemName,Desc,price,qty) {
 
         this._code = code;
         this._itemName = itemName;
         this._Desc =Desc;
         this._price = price;
-        this._Category = Category;
+        this._qty = qty;
     }
 
 
@@ -42,11 +49,5 @@ export default class ItemModel {
         this._price = value;
     }
 
-    get Category() {
-        return this._Category;
-    }
 
-    set Category(value) {
-        this._Category = value;
-    }
 }

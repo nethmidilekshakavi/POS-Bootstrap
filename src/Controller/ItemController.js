@@ -11,7 +11,7 @@ $("#save-item").on('click',function (){
     let name = $('#itemName').val();
     let desc = $('#itemDescription').val();
     let price = $('#itemPrice').val();
-    let category = $('#itemCategory').val();
+    let qty = $('#qty').val();
 
 
     if (itemcode.length === 0) {
@@ -43,11 +43,11 @@ $("#save-item").on('click',function (){
         });
     }
 
-    else if (category.length === 0) {
+    else if (qty.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Invalid price!",
+            text: "Invalid qty!",
         });
     }
 
@@ -58,13 +58,13 @@ $("#save-item").on('click',function (){
             name,
             desc,
             price,
-            category
+            qty
         );
 
 
         item_Array.push(item)
 
-        $("#itemCategory").val("")
+        $("#qty").val("")
         $("#itemPrice").val("")
         $("#itemDescription").val("")
         $("#itemName").val("")
@@ -80,7 +80,7 @@ const loadTable = () => {
     $("#itemTableBody").empty();
 
     item_Array.map((item, index) => {
-        let data1 = `<tr><td>${item.code}</td><td>${item.itemName}</td><td>${item.Desc}</td><td>${item.price}</td><td>${item.Category}</td></tr>`;
+        let data1 = `<tr><td>${item.code}</td><td>${item.itemName}</td><td>${item.Desc}</td><td>${item.price}</td><td>${item._qty}</td></tr>`;
         $("#itemTableBody").append(data1);
     });
 }
@@ -96,7 +96,7 @@ $('#itemTableBody').on('click', 'tr', function () {
     $("#itemName").val(object.itemName);
     $("#itemDescription").val(object.Desc);
     $("#itemPrice").val(object.price);
-    $("#itemCategory").val(object.Category);
+    $("#qty").val(object.Category);
 });
 
 //update==============================================================================================================
@@ -112,7 +112,7 @@ $("#update-item").on('click', function () {
         if (result.isConfirmed) {
             if (select_item_index !== null) {
                 let code = $('#code').val();
-                let category = $('#itemCategory').val();
+                let category = $('#qty').val();
                 let price = $('#itemPrice').val();
                 let desc = $('#itemDescription').val();
                 let name = $('#itemName').val();
@@ -147,7 +147,7 @@ $("#update-item").on('click', function () {
 const loadTable1 = () => {
     $("#itemTableBody").empty();
     item_Array.map((item) => {
-        let data1 = `<tr><td>${item.code}</td><td>${item.itemName}</td><td>${item.Desc}</td><td>${item.price}</td><td>${item.Category}</td></tr>`;
+        let data1 = `<tr><td>${item.code}</td><td>${item.itemName}</td><td>${item.Desc}</td><td>${item.price}</td><td>${item._qty}</td></tr>`;
         $("#itemTableBody").append(data1);
     });
 };
@@ -162,12 +162,12 @@ $('#itemTableBody').on('click', 'tr', function () {
     $("#itemName").val(object.itemName);
     $("#itemDescription").val(object.Desc);
     $("#itemPrice").val(object.price);
-    $("#itemCategory").val(object.Category);
+    $("#qty").val(object._qty);
 });
 
 // Clear input fields
 const clearFields = () => {
-    $("#itemCategory").val("")
+    $("#qty").val("")
     $("#itemPrice").val("")
     $("#itemDescription").val("")
     $("#itemName").val("")
@@ -193,7 +193,7 @@ $("#delete-item").on('click', function () {
 
     loadTable();
 
-    $("#itemCategory").val("")
+    $("#qty").val("")
     $("#itemPrice").val("")
     $("#itemDescription").val("")
     $("#itemName").val("")
@@ -215,7 +215,7 @@ $("#delete-item").on('click', function () {
 $("#clear-item").on('click', function () {
 
 
-    $("#itemCategory").val("")
+    $("#qty").val("")
     $("#itemPrice").val("")
     $("#itemDescription").val("")
     $("#itemName").val("")

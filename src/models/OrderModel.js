@@ -1,46 +1,40 @@
-export default class OrderModel{
+export default class OrderModel {
+    get orderdate() {
+        return this._orderdate;
+    }
 
-    constructor(id,name,email,mobile,coffeeType,price,qty) {
-
-        this._id = id;
+    set orderdate(value) {
+        this._orderdate = value;
+    }
+    constructor(orderid, name, mobile, coffeeType, price, qty,orderdate) {
         this._name = name;
-        this._email = email;
-        this._mobile = mobile;
+        this._mobile = mobile
         this._coffeeType = coffeeType;
+        this._orderdate =  orderdate;
         this._price = price;
-        this._qty = qty
-
+        this._qty = qty;
+        this._orderid = orderid;
     }
 
 
-    get id() {
-        return this._id;
+    get orderid() {
+        return this._orderid;
     }
 
-    set id(value) {
-        this._id = value;
+    set orderid(value) {
+        this._orderid = value;
     }
 
     get name() {
         return this._name;
     }
-
     set name(value) {
         this._name = value;
-    }
-
-    get email() {
-        return this._email;
-    }
-
-    set email(value) {
-        this._email = value;
     }
 
     get mobile() {
         return this._mobile;
     }
-
     set mobile(value) {
         this._mobile = value;
     }
@@ -48,7 +42,6 @@ export default class OrderModel{
     get coffeeType() {
         return this._coffeeType;
     }
-
     set coffeeType(value) {
         this._coffeeType = value;
     }
@@ -56,7 +49,6 @@ export default class OrderModel{
     get price() {
         return this._price;
     }
-
     set price(value) {
         this._price = value;
     }
@@ -64,7 +56,6 @@ export default class OrderModel{
     get qty() {
         return this._qty;
     }
-
     set qty(value) {
         this._qty = value;
     }

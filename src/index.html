@@ -136,7 +136,8 @@
             <div class="form-group">
                 <label for="firstname">First Name:</label>
                 <input type="text" class="form-control" id="Firstname" placeholder="Enter customer's First name" required>
-            </div> <div class="form-group">
+            </div>
+            <div class="form-group">
             <label for="lastname">Last Name:</label>
             <input type="text" class="form-control" id="Lastname" placeholder="Enter customer's Last name" required>
         </div>
@@ -209,17 +210,12 @@
                 <label for="itemDescription">Description:</label>
                 <textarea class="form-control" id="itemDescription" rows="3" placeholder="Enter item description" required></textarea>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="itemCategory">Category:</label>
-                    <select class="form-control" id="itemCategory" required>
-                        <option value="" disabled selected>Select category</option>
-                        <option value="Beverage">Beverage</option>
-                        <option value="Pastry">Pastry</option>
-                        <option value="Snack">Snack</option>
-                    </select>
-                </div>
+
+            <div class="form-group">
+                <label for="itemDescription">QTY</label>
+                <textarea class="form-control" id="qty" rows="3" placeholder="" required></textarea>
             </div>
+
             <br>
             <button type="button" class="btn btn-primary" id="save-item">SAVE</button>
             <button type="button" class="btn btn-primary" id="update-item" style="background-color: green">UPDATE</button>
@@ -235,7 +231,7 @@
                 <th>Item Name</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Category</th>
+                <th>Qty</th>
             </tr>
             </thead>
             <tbody id="itemTableBody">
@@ -251,34 +247,45 @@
     <br>
     <h1 class="text-center">Coffee Shop Order Form</h1>
     <form id="orderForm">
+
+        <div class="mb-3">
+            <label for="orderID" class="form-label">Order ID</label>
+            <input type="text" class="form-control" id="OrderID">
+        </div>
+
+        <div class="mb-3">
+            <label for="orderDate" class="form-label">Order Date</label>
+            <input type="text" class="form-control" id="orderDate">
+        </div>
+
         <div class="form-group">
-            <label for="customerId">Name:</label>
+            <label for="customerId">Customer ID:</label>
             <select class="form-control" id="customerId" required>
-                <option value="" disabled selected>Select Customer Name</option>
+                <option value="" disabled selected>Select Customer ID</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="customerName">Name:</label>
-            <input type="email" class="form-control" id="customerName" placeholder="Customer Name" required>
+            <label>Name:</label>
+            <input type="text" class="form-control" id="customersName" placeholder="Customer Name" required>
         </div>
         <div class="form-group">
             <label for="customerPhone">Phone Number:</label>
-            <input type="tel" class="form-control" id="customerPhone" placeholder="Enter your phone number" required>
+            <input type="text" class="form-control" id="customerPhone" placeholder="Enter your phone number" required>
         </div>
 
         <h4>Select Your Items:</h4>
         <div class="form-group">
-            <label for="coffeeType">Coffee Type:</label>
-            <select class="form-control" id="coffeeType" required>
-                <option value="" disabled selected>Select coffee type</option>
-                <option value="Espresso" data-price="3.00">Espresso</option>
-                <option value="Latte" data-price="4.00">Latte</option>
-                <option value="Cappuccino" data-price="4.50">Cappuccino</option>
-                <option value="Americano" data-price="2.50">Americano</option>
-                <option value="Mocha" data-price="4.75">Mocha</option>
-                <option value="Cold Brew" data-price="3.50">Cold Brew</option>
+            <label for="itemId">Item ID:</label>
+            <select class="form-control" id="itemId" required>
+                <option value="" disabled selected>Select Item ID</option>
             </select>
         </div>
+
+        <div class="form-group">
+            <label for="price">Item Description:</label>
+            <input type="text" class="form-control" id="description" placeholder="Description" required min="1">
+        </div>
+
 
         <div class="form-group">
             <label for="price">Price:</label>
@@ -287,21 +294,25 @@
 
         <div class="form-group">
             <label for="quantity">Quantity:</label>
-            <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" required min="1">
+            <input type="text" class="form-control" id="quantity" placeholder="quantity" required min="1">
         </div>
 
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="text" class="form-control" id="OrderQuantity" placeholder="" required min="1">
+        </div>
+
+
         <br>
-        <button type="button" class="btn btn-primary" id="order-save">Save Order</button>
+        <button type="button" class="btn btn-primary" id="order-save">Add Cart</button>
     </form>
 
-    <h2 class="mt-5">Order Details</h2>
     <table class="table table-bordered mt-3" id="orderTable">
         <thead>
         <tr>
             <th>Name</th>
-            <th>Email</th>
             <th>Phone Number</th>
-            <th>Coffee Type</th>
+            <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Total Cost</th>
@@ -310,18 +321,52 @@
         <tbody id="OrderTableBody">
         </tbody>
     </table>
+
+<!--    <div class="discount">
+        <label for="discount" class="form-label">Discount</label>
+        <input type="tel" class="form-control" id="discount">
+    </div>
+    <h3 id="subTotal">Sub Total :</h3>
+    <div class="cash">
+        <label for="cash" class="form-label">Cash</label>
+        <input type="tel" class="form-control" id="cash">
+    </div>-->
+    <div class="balance">
+        <label for="Total" class="form-label">Total</label>
+        <input type="tel" class="form-control" id="Total">
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary" id="purchase">Purchase</button>
+
+
+    <h1>Order Details</h1>
+    <table class="table table-bordered mt-3" id="orderDetails">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Item Code</th>
+            <th>Customer ID</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Sub Total</th>
+        </tr>
+        </thead>
+        <tbody id="OrderDetailTableBody">
+        </tbody>
+    </table>
 </section>
 
 <!--===============================================================================================================================-->
-
 <script src="lib/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script type="module" src="db/database.js"></script>
 <script type="module" src="Controller/CustomerController.js"></script>
-<script src="db/database.js"></script>
 <script type="module" src="Controller/ItemController.js"></script>
 <script type="module" src="Controller/OrderController.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="Controller/Login.js"></script>
+<script type="module" src="Controller/Login.js"></script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
