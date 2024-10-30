@@ -198,10 +198,6 @@
                     <input type="text" class="form-control" id="code" placeholder="" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="itemName">Item Name:</label>
-                    <input type="text" class="form-control" id="itemName" placeholder="Enter item name" required>
-                </div>
-                <div class="form-group col-md-6">
                     <label for="itemPrice">Price:</label>
                     <input type="number" class="form-control" id="itemPrice" placeholder="Enter item price" step="0.01" required>
                 </div>
@@ -228,7 +224,6 @@
             <thead>
             <tr>
                 <th>Code</th>
-                <th>Item Name</th>
                 <th>Description</th>
                 <th>Price</th>
                 <th>Qty</th>
@@ -242,20 +237,18 @@
 </section>
 
 <!--==========================================Order===================================================================-->
-
 <section id="order" class="container mt-5">
     <br>
     <h1 class="text-center">Coffee Shop Order Form</h1>
     <form id="orderForm">
-
         <div class="mb-3">
-            <label for="orderID" class="form-label">Order ID</label>
+            <label for="OrderID" class="form-label">Order ID</label>
             <input type="text" class="form-control" id="OrderID">
         </div>
 
         <div class="mb-3">
             <label for="orderDate" class="form-label">Order Date</label>
-            <input type="text" class="form-control" id="orderDate">
+            <input type="date" class="form-control" id="orderDate">
         </div>
 
         <div class="form-group">
@@ -264,13 +257,15 @@
                 <option value="" disabled selected>Select Customer ID</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label>Name:</label>
+            <label for="customersName">Name:</label>
             <input type="text" class="form-control" id="customersName" placeholder="Customer Name" required>
         </div>
+
         <div class="form-group">
             <label for="customerPhone">Phone Number:</label>
-            <input type="text" class="form-control" id="customerPhone" placeholder="Enter your phone number" required>
+            <input type="number" class="form-control" id="customerPhone" placeholder="Enter your phone number" required>
         </div>
 
         <h4>Select Your Items:</h4>
@@ -282,29 +277,28 @@
         </div>
 
         <div class="form-group">
-            <label for="price">Item Description:</label>
-            <input type="text" class="form-control" id="description" placeholder="Description" required min="1">
+            <label for="description">Item Description:</label>
+            <input type="text" class="form-control" id="description" placeholder="Description" required>
         </div>
-
 
         <div class="form-group">
             <label for="price">Price:</label>
-            <input type="text" class="form-control" id="price" placeholder="Enter price" required min="1">
+            <input type="text" class="form-control" id="price" placeholder="Enter price" required>
         </div>
 
         <div class="form-group">
             <label for="quantity">Quantity:</label>
-            <input type="text" class="form-control" id="quantity" placeholder="quantity" required min="1">
+            <input type="number" class="form-control" id="quantity" placeholder="Quantity" required>
         </div>
 
         <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input type="text" class="form-control" id="OrderQuantity" placeholder="" required min="1">
+            <label for="Getquantity">Qty:</label>
+            <input type="number" class="form-control" id="Getquantity" required>
         </div>
 
 
         <br>
-        <button type="button" class="btn btn-primary" id="order-save">Add Cart</button>
+        <button type="button" class="btn btn-primary" id="order-save">Add to Cart</button>
     </form>
 
     <table class="table table-bordered mt-3" id="orderTable">
@@ -313,30 +307,23 @@
             <th>Name</th>
             <th>Phone Number</th>
             <th>Description</th>
+            <th>Date</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Total Cost</th>
         </tr>
         </thead>
-        <tbody id="OrderTableBody">
-        </tbody>
+        <tbody id="OrderTableBody"></tbody>
     </table>
 
-<!--    <div class="discount">
-        <label for="discount" class="form-label">Discount</label>
-        <input type="tel" class="form-control" id="discount">
-    </div>
-    <h3 id="subTotal">Sub Total :</h3>
-    <div class="cash">
-        <label for="cash" class="form-label">Cash</label>
-        <input type="tel" class="form-control" id="cash">
-    </div>-->
-    <div class="balance">
+    <div class="balance mt-3">
         <label for="Total" class="form-label">Total</label>
-        <input type="tel" class="form-control" id="Total">
+        <input type="tel" class="form-control" id="Total" readonly>
     </div>
+
     <br>
     <button type="button" class="btn btn-primary" id="purchase">Purchase</button>
+
 
 
     <h1>Order Details</h1>

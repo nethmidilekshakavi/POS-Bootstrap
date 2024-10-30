@@ -7,10 +7,9 @@ export default class ItemModel {
         this._qty = value;
     }
 
-    constructor(code,itemName,Desc,price,qty) {
+    constructor(code,Desc,price,qty) {
 
         this._code = code;
-        this._itemName = itemName;
         this._Desc =Desc;
         this._price = price;
         this._qty = qty;
@@ -25,13 +24,7 @@ export default class ItemModel {
         this._code = value;
     }
 
-    get itemName() {
-        return this._itemName;
-    }
 
-    set itemName(value) {
-        this._itemName = value;
-    }
 
     get Desc() {
         return this._Desc;

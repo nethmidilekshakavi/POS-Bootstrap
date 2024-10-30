@@ -29,51 +29,77 @@ export function loaditem() {
         $("#itemId").append(option);
     });
 }
+
+const customerid = $('#customerId');
+const customername = $('#customersName');
+const customermobile = $('#customerPhone');
+const itemid = $('#itemId');
+const description = $('#description');
+const price = $('#price');
+const quantity = $('#quantity');
+
+customerid.on('input', () => {
+    if (customerid.val()) {
+        let index = customer_Array.findIndex(Customer => Customer.id === customerid.val());
+        if (index !== -1) {
+            customername.val(customer_Array[index].last_name);
+
+        } else {
+            customername.val('');
+            customermobile.val('');
+        }
+    }
+});
+
+itemid.on('input', () => {
+    if (itemid.val()) {
+        let index = item_Array.findIndex(item => item.code === itemid.val());
+        if (index !== -1) {
+            description.val(item_Array[index].Desc);
+            price.val(item_Array[index].price);
+            quantity.val(item_Array[index].qty);
+        } else {
+            description.val('');
+            price.val('');
+            quantity.val('');
+        }
+    }
+});
+
 $("#order-save").on('click', function () {
     let orderid = $('#OrderID').val();
+    let customerid = $('#customerId').val();
     let orderdate = $('#orderDate').val();
     let name = $('#customersName').val();
     let num = $('#customerPhone').val();
-    let type = $('#coffeeType').val();
-    let price = parseFloat($('#price').val());
-    let qty = parseInt($('#quantity').val());
-
-
+    let itemCode = $('#itemId').val();
+    let desc = $('#description').val();
+    let price = $('#price').val();
+    let qty = $('#quantity').val();
+    let getQty = $('#Getquantity').val();
 
     if (!name) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Invalid First Name!",
-        });
-    } else if (!type) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Invalid Coffee Type!",
-        });
+        Swal.fire({ icon: "error", title: "Oops...", text: "Invalid First Name!" });
+    } else if (!itemCode) {
+        Swal.fire({ icon: "error", title: "Oops...", text: "Invalid item ID!" });
     } else if (!price || isNaN(price) || price <= 0) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Invalid Price!",
-        });
+        Swal.fire({ icon: "error", title: "Oops...", text: "Invalid Price!" });
     } else if (!qty || isNaN(qty) || qty <= 0) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Invalid Quantity!",
-        });
+        Swal.fire({ icon: "error", title: "Oops...", text: "Invalid Quantity!" });
     } else if (!validateTele(num)) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Invalid Phone Number!",
-        });
+        Swal.fire({ icon: "error", title: "Oops...", text: "Invalid Phone Number!" });
     } else {
         let order = new OrderModel(
-            Order_Array.length + 1, // Increment order ID based on length
-            name, num, type, price, qty,orderid,orderdate
+            Order_Array.length + 1,
+            itemCode,
+            customerid,
+            num,
+            parseFloat(price),
+            parseInt(qty),
+            parseInt(getQty),
+            orderdate,
+            desc,
+            name
         );
 
         Order_Array.push(order);
@@ -81,30 +107,35 @@ $("#order-save").on('click', function () {
 
         // Clear the input fields
         $("#customersName").val("");
+        $("#customerId").val("");
+        $("#description").val("");
         $("#orderDate").val("");
         $("#OrderID").val("");
         $("#customerPhone").val("");
-        $("#coffeeType").val("");
+        $("#itemId").val("");
         $("#price").val("");
-        $("#quantity").val("");
+        $("#Getquantity").val("");
     }
 });
 
-// Load order details into the table
 const loadOrderTable = () => {
     $("#OrderTableBody").empty();
+    let totalCost = 0;
     Order_Array.forEach((item) => {
-        let total = item.price * item.qty;
+        let total = item.price * item.getqty;
+        totalCost += total;
         let data = `<tr>
-            <td>${item.name}</td>
-            <td>${item.mobile}</td>
-            <td>${item.coffeeType}</td>
-            <td>${item.price}</td>
-            <td>${item.qty}</td>
-            <td>${total}</td>
-        </tr>`;
+                <td>${item.cusname}</td>
+                <td>${item.mobile}</td>
+                <td>${item.desc}</td>
+                <td>${item.orderdate}</td>
+                <td>${item.price}</td>
+                <td>${item.getqty}</td>
+                <td>${total}</td>
+            </tr>`;
         $("#OrderTableBody").append(data);
     });
+    $("#Total").val(totalCost);
 };
 
 // Event handler for selecting a row from the order table
@@ -118,9 +149,24 @@ $('#OrderTableBody').on('click', 'tr', function () {
     console.log(object);
 
     // Click and load table text fields
-    $("#customersName").val(object.name);
+    $("#OrderID").val(object.orderid);
+    $("#customersName").val(object.cusname);
+    $("#itemId").val(object.itemid);
+    $("#customerId").val(object.cusid);
+    $("#description").val(object.desc);
+    $("#orderDate").val(object.orderdate);
     $("#customerPhone").val(object.mobile);
-    $("#coffeeType").val(object.coffeeType);
     $("#price").val(object.price);
     $("#quantity").val(object.qty);
+    $("#Getquantity").val(object.getqty);
 });
+
+
+$('#purchase').on('click',function (){
+
+    $("#OrderDetailTableBody")
+
+
+
+
+})
