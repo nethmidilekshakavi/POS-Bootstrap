@@ -1,6 +1,4 @@
-//add custome
-
-
+//add customer
 import CustomerModel from "../models/CustomerModel.js";
 import {customer_Array} from "../db/database.js";
 import {loadCustomers} from "./OrderController.js";
