@@ -1,6 +1,7 @@
 
 import {item_Array} from "../db/database.js";
 import ItemModel from "../models/ItemModel.js";
+import {loaditem} from "./OrderController.js";
 
 
 //save==============================================================================================
@@ -72,6 +73,7 @@ $("#save-item").on('click',function (){
 
 
         loadTable();
+        loaditem()
     }
 });
 

@@ -1,5 +1,6 @@
 import OrderModel from "../models/OrderModel.js";
 import { Order_Array } from "../db/database.js";
+import {item_Array} from "../db/database.js";
 import { customer_Array } from "../db/database.js";
 
 
@@ -12,14 +13,22 @@ const validateTele = (num) => {
 // Load customer IDs into the dropdown
 export function loadCustomers() {
     $("#customerId").empty();
-    $("#customerId").append('<option value="" disabled selected>Select Customer ID</option>'); // Add a placeholder
+    $("#customerId").append('<option value="" disabled selected>Select Customer ID</option>');
     customer_Array.forEach((item) => {
         let option = `<option value="${item.id}">${item.id}</option>`;
         $("#customerId").append(option);
     });
 }
 
-
+// Load item IDs into the dropdown
+export function loaditem() {
+    $("#itemId").empty();
+    $("#itemId").append('<option value="" disabled selected>Select Item ID</option>');
+    item_Array.forEach((item) => {
+        let option = `<option value="${item.code}">${item.code}</option>`;
+        $("#itemId").append(option);
+    });
+}
 $("#order-save").on('click', function () {
     let orderid = $('#OrderID').val();
     let orderdate = $('#orderDate').val();

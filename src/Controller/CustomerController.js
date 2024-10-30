@@ -1,7 +1,7 @@
 //add customer
 import CustomerModel from "../models/CustomerModel.js";
 import {customer_Array} from "../db/database.js";
-import {loadCustomers} from "./OrderController.js";
+import {loadCustomers, loaditem} from "./OrderController.js";
 
 
 
@@ -240,6 +240,7 @@ $("#delete-customer").on("click", function() {
         $("#email").val("")
 
         loadCustonerTable();
+        loadCustomers();
 
         if (result.isConfirmed) {
             Swal.fire({
