@@ -1,59 +1,47 @@
 import OrderModel from "../models/OrderModel.js";
 import OrderDetailsModeal from "../models/OrderDetailsModeal.js";
-import {customer_Array, item_Array, Order_Array, Order_Details_Array} from "../db/database.js";
+import { customer_Array, item_Array, Order_Array, Order_Details_Array } from "../db/database.js";
 
-// Function to validate phone numbers based on Sri Lankan format
+// Validate phone number format (Sri Lankan)
 const validateTele = (num) => {
     const sriLankanMobileRegex = /^(?:\+94|0)?7[0-9]{8}$/;
     return sriLankanMobileRegex.test(num);
 };
 
-// Load customer IDs into the dropdown
+// Load customer IDs
 export function loadcustomer() {
     $("#customerId").empty().append('<option value="" disabled selected>Select Customer ID</option>');
     customer_Array.forEach((item) => {
-        let option = `<option value="${item.id}">${item.id}</option>`;
-        $("#customerId").append(option);
+        $("#customerId").append(`<option value="${item.id}">${item.id}</option>`);
     });
 }
 
-// Load item IDs into the dropdown
+// Load item IDs
 export function loaditem() {
     $("#itemId").empty().append('<option value="" disabled selected>Select Item ID</option>');
     item_Array.forEach((item) => {
-        let option = `<option value="${item.code}">${item.code}</option>`;
-        $("#itemId").append(option);
+        $("#itemId").append(`<option value="${item.code}">${item.code}</option>`);
     });
 }
 
 // DOM Elements
 const customer_id = $('#customerId');
-const orderid = $('#OrderID');
-const customer_name = $('#orderCustomer');
-const customer_mobile = $('#orderphone');
 const itemid = $('#itemId');
+const getquantity = $('#Getquantity');
+const quantity = $('#quantity');
 const description = $('#description');
 const price = $('#price');
-const quantity = $('#quantity');
-const getqty = $('#Getquantity');
-const discount = $('#discout');
-const subtotall = $('#subtotal');
+const totalElement = $("#Total");
 
-// Populate customer details when customer ID is selected
+
 customer_id.on('change', () => {
     const selectedCustomerId = customer_id.val();
     const customer = customer_Array.find(item => item.id === selectedCustomerId);
-
-    if (customer) {
-        customer_name.val(customer._first_name);
-        customer_mobile.val(customer._mobile);
-    } else {
-        customer_name.val('');
-        customer_mobile.val('');
-    }
+    $('#orderCustomer').val(customer ? customer._first_name : '');
+    $('#orderphone').val(customer ? customer._mobile : '');
 });
 
-// Populate item details when item ID is selected
+
 itemid.on('change', () => {
     const selectedItemId = itemid.val();
     const item = item_Array.find(item => item.code === selectedItemId);
@@ -69,7 +57,7 @@ itemid.on('change', () => {
     }
 });
 
-// Add item to the cart
+// Add item to cart
 $("#order-save").on('click', function () {
     const orderData = {
         orderid: $('#OrderID').val(),
@@ -98,40 +86,31 @@ $("#order-save").on('click', function () {
         Swal.fire({ icon: "error", title: "Oops...", text: "Invalid Phone Number!" });
     } else {
         const order = new OrderModel(
-
             Order_Array.length + 1,
-
-            orderData.qty = orderData.qty - orderData.getQty,
-
             orderData.itemCode,
             orderData.customerid,
             orderData.num,
             orderData.price,
+            orderData.qty,
             orderData.getQty,
             orderData.orderdate,
             orderData.desc,
             orderData.name,
             orderData.discount1
         );
-
-
-
         Order_Array.push(order);
         loadOrderTable();
     }
 });
 
 // Load Order Table
-let total = 0;
 const loadOrderTable = () => {
     $("#OrderTableBody").empty();
-    total = 0;
+    let total = 0;
 
     Order_Array.forEach((item) => {
-        const itemTotal = item.price * item.getqty;
+        const itemTotal = item.getqty * item.price;
         total += itemTotal;
-
-
 
         const data = `<tr>
             <td>${item.cusname}</td>
@@ -145,10 +124,10 @@ const loadOrderTable = () => {
         $("#OrderTableBody").append(data);
     });
 
-    $("#Total").val(total);
+    totalElement.val(total);
 };
 
-// Handle table row selection
+// Handle row selection
 $('#OrderTableBody').on('click', 'tr', function () {
     const index = $(this).index();
     const selectedOrder = Order_Array[index];
@@ -167,10 +146,13 @@ $('#OrderTableBody').on('click', 'tr', function () {
 
 // Save Order Details
 $('#purchase').on('click', () => {
-    const oid = $('#OrderID').val();
-    const Date = $('#orderDate').val();
-    const cid = $('#customerId').val();
-    const subtotal = $('#Total').val();
+    const orderDetails = new OrderDetailsModeal(
+        Order_Details_Array.length + 1,
+        $('#OrderID').val(),
+        $('#orderDate').val(),
+        $('#customerId').val(),
+        totalElement.val()
+    );
 
     Swal.fire({
         position: "top-end",
@@ -180,7 +162,6 @@ $('#purchase').on('click', () => {
         timer: 1500
     });
 
-    const orderDetails = new OrderDetailsModeal(Order_Details_Array.length + 1, oid, Date, cid, subtotal);
     Order_Details_Array.push(orderDetails);
     loadOrderDetailsTable();
 });
@@ -193,7 +174,7 @@ const loadOrderDetailsTable = () => {
             <td>${order.cusid}</td>
             <td>${order.orderdate}</td>
             <td>${order.cusid}</td>
-            <td>${total}</td>
+            <td>${totalElement.val()}</td>
         </tr>`;
         $("#OrderDetailTableBody").append(data);
     });
