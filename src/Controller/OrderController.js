@@ -2,7 +2,6 @@ import OrderModel from "../models/OrderModel.js";
 import OrderDetailsModeal from "../models/OrderDetailsModeal.js";
 import { customer_Array, item_Array, Order_Array, Order_Details_Array } from "../db/database.js";
 
-// Validate phone number format (Sri Lankan)
 const validateTele = (num) => {
     const sriLankanMobileRegex = /^(?:\+94|0)?7[0-9]{8}$/;
     return sriLankanMobileRegex.test(num);
@@ -24,7 +23,7 @@ export function loaditem() {
     });
 }
 
-// DOM Elements
+
 const customer_id = $('#customerId');
 const itemid = $('#itemId');
 const getquantity = $('#Getquantity');
@@ -73,7 +72,7 @@ $("#order-save").on('click', function () {
         discount1: parseInt($('#discout').val()),
     };
 
-    // Validate inputs
+
     if (!orderData.name) {
         Swal.fire({ icon: "error", title: "Oops...", text: "Invalid First Name!" });
     } else if (!orderData.itemCode) {
@@ -127,7 +126,7 @@ const loadOrderTable = () => {
     totalElement.val(total);
 };
 
-// Handle row selection
+
 $('#OrderTableBody').on('click', 'tr', function () {
     const index = $(this).index();
     const selectedOrder = Order_Array[index];
