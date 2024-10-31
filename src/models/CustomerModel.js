@@ -8,9 +8,9 @@
         this._id = value;
     }
 
-    constructor(id,first_name,last_name,address,email,mobile) {
+    constructor(id,firstname,last_name,address,email,mobile) {
         this._id = id;
-        this._first_name = first_name;
+        this._first_name = firstname;
         this._last_name = last_name;
         this._address = address;
         this._email = email;
@@ -19,11 +19,11 @@
     }
 
 
-     get first_name() {
+     get firstname() {
          return this._first_name;
      }
 
-     set first_name(value) {
+     set firstname(value) {
          this._first_name = value;
      }
 

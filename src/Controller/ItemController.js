@@ -1,18 +1,13 @@
-
-import {item_Array} from "../db/database.js";
+import { item_Array } from "../db/database.js";
 import ItemModel from "../models/ItemModel.js";
-import {loaditem} from "./OrderController.js";
+import { loaditem } from "./OrderController.js";
 
-
-//save==============================================================================================
-$("#save-item").on('click',function (){
-
-
+// Save Item
+$("#save-item").on('click', function () {
     let itemcode = $('#code').val();
     let desc = $('#itemDescription').val();
     let price = $('#itemPrice').val();
     let qty = $('#qty').val();
-
 
     if (itemcode.length === 0) {
         Swal.fire({
@@ -20,66 +15,47 @@ $("#save-item").on('click',function (){
             title: "Oops...",
             text: "Invalid Item Code!",
         });
-    }
-
-    else if (desc.length === 0) {
+    } else if (desc.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Invalid description!",
         });
-    }
-    else if (price.length === 0) {
+    } else if (price.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Invalid price!",
         });
-    }
-
-    else if (qty.length === 0) {
+    } else if (qty.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Invalid qty!",
         });
-    }
+    } else {
+        let item = new ItemModel(itemcode, desc, price, qty);
+        item_Array.push(item);
 
-    else {
-
-        let item = new ItemModel(
-            itemcode,
-            desc,
-            price,
-            qty
-        );
-
-
-        item_Array.push(item)
-
-        $("#qty").val("")
-        $("#itemPrice").val("")
-        $("#itemDescription").val("")
-        $("#code").val("")
-
-
+        clearFields();
         loadTable();
-        loaditem()
+        loaditem();
     }
 });
 
-
+// Load Items into Table
 const loadTable = () => {
     $("#itemTableBody").empty();
-
-    item_Array.map((item, index) => {
-        let data1 = `<tr><td>${item.code}</td><td>${item.Desc}</td><td>${item.price}</td><td>${item._qty}</td></tr>`;
-        $("#itemTableBody").append(data1);
+    item_Array.forEach((item) => {
+        let data = `<tr><td>${item.code}</td><td>${item.Desc}</td><td>${item.price}</td><td>${item.qty}</td></tr>`;
+        $("#itemTableBody").append(data);
     });
-}
+};
 
+// Track Selected Item Index
 let select_item_index = null;
 
+// Handle Row Click
 $('#itemTableBody').on('click', 'tr', function () {
     let index = $(this).index();
     select_item_index = index;
@@ -88,11 +64,10 @@ $('#itemTableBody').on('click', 'tr', function () {
     $("#code").val(object.code);
     $("#itemDescription").val(object.Desc);
     $("#itemPrice").val(object.price);
-    $("#qty").val(object.Category);
+    $("#qty").val(object.qty);
 });
 
-//update==============================================================================================================
-
+// Update Item
 $("#update-item").on('click', function () {
     Swal.fire({
         title: "Do you want to save the changes?",
@@ -104,27 +79,26 @@ $("#update-item").on('click', function () {
         if (result.isConfirmed) {
             if (select_item_index !== null) {
                 let code = $('#code').val();
-                let category = $('#qty').val();
-                let price = $('#itemPrice').val();
                 let desc = $('#itemDescription').val();
+                let qty = $('#qty').val();
+                let price = $('#itemPrice').val();
 
-                // Update selected customer details
+                // Update selected item details
                 item_Array[select_item_index].code = code;
                 item_Array[select_item_index].Desc = desc;
-                item_Array[select_item_index].Category =category;
-                item_Array[select_item_index].price =price;
-
+                item_Array[select_item_index].qty = qty;
+                item_Array[select_item_index].price = price;
 
                 clearFields();
-                loadTable1();
-                select_item_index = null; // Reset index
+                loadTable();
 
+                select_item_index = null;
                 Swal.fire("Saved!", "", "success");
             } else {
                 Swal.fire({
                     icon: "warning",
-                    title: "Select a customer",
-                    text: "Please select a item to update.",
+                    title: "Select an item",
+                    text: "Please select an item to update.",
                 });
             }
         } else if (result.isDenied) {
@@ -133,80 +107,50 @@ $("#update-item").on('click', function () {
     });
 });
 
-// Load customer table
-const loadTable1 = () => {
-    $("#itemTableBody").empty();
-    item_Array.map((item) => {
-        let data1 = `<tr><td>${item.code}</td>${item.Desc}</td><td>${item.price}</td><td>${item._qty}</td></tr>`;
-        $("#itemTableBody").append(data1);
-    });
-};
-
-// Handle row click
-$('#itemTableBody').on('click', 'tr', function () {
-    let index = $(this).index();
-    select_item_index = index;
-
-    let object = item_Array[index];
-    $("#code").val(object.code);
-    $("#itemDescription").val(object.Desc);
-    $("#itemPrice").val(object.price);
-    $("#qty").val(object._qty);
-});
-
-// Clear input fields
-const clearFields = () => {
-    $("#qty").val("")
-    $("#itemPrice").val("")
-    $("#itemDescription").val("")
-    $("#code").val("")
-};
-
-//delete==========================================================================================
-
+// Delete Item
 $("#delete-item").on('click', function () {
+    if (select_item_index !== null) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                item_Array.splice(select_item_index, 1);
+                loadTable();
+                clearFields();
+                select_item_index = null;
 
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-
-
-        item_Array.splice(select_item_index,1)
-
-    loadTable();
-
-    $("#qty").val("")
-    $("#itemPrice").val("")
-    $("#itemDescription").val("")
-    $("#code").val("")
-
-
-    loadTable();
-
-        if (result.isConfirmed) {
-            Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-            });
-        }
-    });
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your item has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: "warning",
+            title: "Select an item",
+            text: "Please select an item to delete.",
+        });
+    }
 });
 
+// Clear Item Fields
+const clearFields = () => {
+    $("#qty").val("");
+    $("#itemPrice").val("");
+    $("#itemDescription").val("");
+    $("#code").val("");
+};
+
+// Clear Item Fields Button
 $("#clear-item").on('click', function () {
-
-
-    $("#qty").val("")
-    $("#itemPrice").val("")
-    $("#itemDescription").val("")
-    $("#code").val("")
-
-
-
-})
+    clearFields();
+    select_item_index = null;
+});

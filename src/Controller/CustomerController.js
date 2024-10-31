@@ -1,7 +1,7 @@
 //add customer
 import CustomerModel from "../models/CustomerModel.js";
 import {customer_Array} from "../db/database.js";
-import {loadCustomers, loaditem} from "./OrderController.js";
+import {loadcustomer} from "./OrderController.js";
 
 
 
@@ -18,8 +18,8 @@ const validateTele = (num) =>{
 $("#save-customer").on('click',function (){
 
 
-    let fn = $('#Firstname').val();
-    let ln = $('#Lastname').val();
+    let fn = $('#firstname').val();
+    let ln = $('#lastname').val();
     let address = $('#address').val();
     let email = $('#email').val();
     let num = $('#phone').val();
@@ -79,14 +79,16 @@ $("#save-customer").on('click',function (){
         customer_Array.push(customer)
 
         loadCustonerTable();
-        loadCustomers()
 
-        $("#Firstname").val("")
+        $("#firstname").val("")
         $("#id").val("")
-        $("#Lastname").val("")
+        $("#lastname").val("")
         $("#phone").val("")
         $("#address").val("")
         $("#email").val("")
+
+        loadcustomer()
+
     }
 });
 
@@ -99,7 +101,7 @@ const loadCustonerTable = () =>{
 
         console.log(item);
 
-        let data =`<tr><td>${item.first_name}</td>$<td>${item.last_name}</td>$<td>${item.address}</td><td>${item.mobile}</td>$<td>${item.email}</td></tr>`
+        let data =`<tr><td>${item.firstname}</td>$<td>${item.last_name}</td>$<td>${item.address}</td><td>${item.mobile}</td>$<td>${item.email}</td></tr>`
 
         $("#customerTabl" +
             "eBody").append(data)
@@ -124,16 +126,16 @@ $('#customerTableBody').on('click' , 'tr' ,function (){
     //click and load table textFiled
 
     let id = obiject.id;
-    let firstname =  obiject.first_name;
+    let firstname =  obiject.firstname;
     let lastname =  obiject.last_name;
     let phone =  obiject.mobile;
     let address =  obiject.address;
     let email =  obiject.email;
 
 
-    $("#FirstName").val(firstname)
+    $("#firstname").val(firstname)
     $("#id").val(id)
-    $("#Lastname").val(lastname)
+    $("#lastname").val(lastname)
     $("#phone").val(phone)
     $("#address").val(address)
     $("#email").val(email)
@@ -153,8 +155,8 @@ $("#update-customer").on('click', function () {
     }).then((result) => {
         if (result.isConfirmed) {
             if (seletc_customer_index !== null) {
-                let fn = $('#Firstname').val();
-                let ln = $('#Lastname').val();
+                let fn = $('#firstname').val();
+                let ln = $('#lastname').val();
                 let address = $('#address').val();
                 let email = $('#email').val();
                 let num = $('#phone').val();
@@ -188,7 +190,7 @@ $("#update-customer").on('click', function () {
 const updateCustomerTable = () => {
     $("#customerTableBody").empty();
     customer_Array.map((item) => {
-        let data = `<tr><td>${item.first_name}</td><td>${item.last_name}</td><td>${item.address}</td><td>${item.mobile}</td><td>${item.email}</td></tr>`;
+        let data = `<tr><td>${item.firstname}</td><td>${item.last_name}</td><td>${item.address}</td><td>${item.mobile}</td><td>${item.email}</td></tr>`;
         $("#customerTableBody").append(data);
     });
 };
@@ -199,9 +201,9 @@ $('#customerTableBody').on('click', 'tr', function () {
     seletc_customer_index = index;
 
     let object = customer_Array[index];
-    $("#Firstname").val(object.first_name);
+    $("#firstname").val(object.firstname);
     $("#id").val(object.id);
-    $("#Lastname").val(object.last_name);
+    $("#lastname").val(object.last_name);
     $("#phone").val(object.mobile);
     $("#address").val(object.address);
     $("#email").val(object.email);
@@ -209,9 +211,9 @@ $('#customerTableBody').on('click', 'tr', function () {
 
 // Clear input fields
 const clearFields = () => {
-    $("#Firstname").val("");
+    $("#firstname").val("");
     $("#id").val("");
-    $("#Lastname").val("");
+    $("#lastname").val("");
     $("#phone").val("");
     $("#address").val("");
     $("#email").val("");
@@ -233,14 +235,14 @@ $("#delete-customer").on("click", function() {
         customer_Array.splice(seletc_customer_index,1);
         loadCustonerTable();
 
-        $("#Firstname").val("")
-        $("#Lastname").val("")
+        $("#firstname").val("")
+        $("#lastname").val("")
         $("#phone").val("")
         $("#address").val("")
         $("#email").val("")
 
         loadCustonerTable();
-        loadCustomers();
+
 
         if (result.isConfirmed) {
             Swal.fire({
@@ -258,9 +260,9 @@ $("#delete-customer").on("click", function() {
 $("#clear-customer").on("click", function() {
 
 
-        $("#Firstname").val("");
+        $("#firstname").val("");
         $("#id").val("");
-        $("#Lastname").val("");
+        $("#lastname").val("");
         $("#phone").val("");
         $("#address").val("");
         $("#email").val("");

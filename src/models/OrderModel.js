@@ -1,15 +1,23 @@
 export default class OrderModel {
-    constructor(orderid, itemid, cusid, mobile, price, qty, getqty, orderdate, desc, cusname) {
-        this._orderid = orderid;
+    get discount() {
+        return this._discount;
+    }
+
+    set discount(value) {
+        this._discount = value;
+    }
+    constructor(orderid, itemid, cusid, mobile, price, qty, getqty, orderdate, desc, cusname,discount) {
+       this._orderid = orderid;
         this._itemid = itemid;
         this._cusid = cusid;
-        this._mobile = mobile;
+        this._mobile  = mobile;
         this._price = price;
         this._qty = qty;
         this._getqty = getqty;
         this._orderdate = orderdate;
         this._desc = desc;
         this._cusname = cusname;
+        this._discount = discount
     }
 
 

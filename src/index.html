@@ -135,11 +135,11 @@
         </div>
             <div class="form-group">
                 <label for="firstname">First Name:</label>
-                <input type="text" class="form-control" id="Firstname" placeholder="Enter customer's First name" required>
+                <input type="text" class="form-control" id="firstname" placeholder="Enter customer's First name" required>
             </div>
             <div class="form-group">
             <label for="lastname">Last Name:</label>
-            <input type="text" class="form-control" id="Lastname" placeholder="Enter customer's Last name" required>
+            <input type="text" class="form-control" id="lastname" placeholder="Enter customer's Last name" required>
         </div>
             <div class="form-group">
                 <label for="address">Address:</label>
@@ -254,18 +254,18 @@
         <div class="form-group">
             <label for="customerId">Customer ID:</label>
             <select class="form-control" id="customerId" required>
-                <option value="" disabled selected>Select Customer ID</option>
+                <option value="text" disabled selected>Select Customer ID</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="customersName">Name:</label>
-            <input type="text" class="form-control" id="customersName" placeholder="Customer Name" required>
+            <label for="orderCustomer">Customer Name:</label>
+            <input type="tel" class="form-control" id="orderCustomer" required>
         </div>
 
         <div class="form-group">
-            <label for="customerPhone">Phone Number:</label>
-            <input type="number" class="form-control" id="customerPhone" placeholder="Enter your phone number" required>
+            <label for="orderphone">Phone Number:</label>
+            <input type="tel" class="form-control" id="orderphone" required>
         </div>
 
         <h4>Select Your Items:</h4>
@@ -288,7 +288,7 @@
 
         <div class="form-group">
             <label for="quantity">Quantity:</label>
-            <input type="number" class="form-control" id="quantity" placeholder="Quantity" required>
+            <input type="number" class="form-control" id="quantity" placeholder="Quantity" required readonly>
         </div>
 
         <div class="form-group">
@@ -318,7 +318,12 @@
 
     <div class="balance mt-3">
         <label for="Total" class="form-label">Total</label>
-        <input type="tel" class="form-control" id="Total" readonly>
+        <input type="text" class="form-control" id="Total" readonly>
+    </div>
+
+    <div class="balance mt-3">
+        <label for="discout" class="form-label">Discount</label>
+        <input type="number" class="form-control" id="discout" >
     </div>
 
     <br>
@@ -330,12 +335,9 @@
     <table class="table table-bordered mt-3" id="orderDetails">
         <thead>
         <tr>
-            <th>Order ID</th>
+            <th id>Order ID</th>
             <th>Date</th>
-            <th>Item Code</th>
             <th>Customer ID</th>
-            <th>Quantity</th>
-            <th>Price</th>
             <th>Sub Total</th>
         </tr>
         </thead>

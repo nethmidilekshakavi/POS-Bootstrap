@@ -1,71 +1,45 @@
-/*
+
 export default class OrderDetailsModeal {
 
-    constructor(orderid,date,Qty,price,Subtotal) {
+    constructor(oid,Date,cid,subtotal){
 
-        this._date = date;
-        this._Qty = qty;
-        this._price = price
-        this._orderid = orderid;
-        this._Qty = Qty;
-        this._Subtotal = Subtotal;
-
+        this._Date = Date;
+         this._cid = cid;
+         this._subtotal = subtotal;
+        this._oid = oid;
     }
 
 
-    get orderid() {
-        return this._orderid;
+    get oid() {
+        return this._oid;
     }
 
-    set orderid(value) {
-        this._orderid = value;
+    set oid(value) {
+        this._oid = value;
     }
 
-    get date() {
-        return this._date;
+    get Date() {
+        return this._Date;
     }
 
-    set date(value) {
-        this._date = value;
+    set Date(value) {
+        this._Date = value;
     }
 
-    get itemcode() {
-        return this._itemcode;
+
+    get cid() {
+        return this._cid;
     }
 
-    set itemcode(value) {
-        this._itemcode = value;
+    set cid(value) {
+        this._cid = value;
     }
 
-    get customerid() {
-        return this._customerid;
+    get subtotal() {
+        return this._subtotal;
     }
 
-    set customerid(value) {
-        this._customerid = value;
+    set subtotal(value) {
+        this._subtotal = value;
     }
-
-    get Qty() {
-        return this._Qty;
-    }
-
-    set Qty(value) {
-        this._Qty = value;
-    }
-
-    get price() {
-        return this._price;
-    }
-
-    set price(value) {
-        this._price = value;
-    }
-
-    get Subtotal() {
-        return this._Subtotal;
-    }
-
-    set Subtotal(value) {
-        this._Subtotal = value;
-    }
-}*/
+}
