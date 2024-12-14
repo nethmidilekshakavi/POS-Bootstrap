@@ -24,21 +24,34 @@ export function loaditem() {
 }
 
 
-const customer_id = $('#customerId');
+
 const itemid = $('#itemId');
+const custsname = $('#firstname');
 const getquantity = $('#Getquantity');
 const quantity = $('#quantity');
 const description = $('#description');
 const price = $('#price');
 const totalElement = $("#Total");
+const cusid = $('#customerId');
 
 
-customer_id.on('change', () => {
-    const selectedCustomerId = customer_id.val();
-    const customer = customer_Array.find(item => item.id === selectedCustomerId);
-    $('#orderCustomer').val(customer ? customer._first_name : '');
-    $('#orderphone').val(customer ? customer._mobile : '');
+
+cusid.on('change', () => {
+    const selectedItemId = itemid.val();
+    const item = customer_Array.find(item => item.cusid === selectedItemId);
+
+    if (item) {
+        custsname.val(item.firstname);
+
+    } else {
+        description.val('');
+        price.val('');
+        quantity.val('');
+
+    }
 });
+
+
 
 
 itemid.on('change', () => {
@@ -53,6 +66,7 @@ itemid.on('change', () => {
         description.val('');
         price.val('');
         quantity.val('');
+        updateqyt()
     }
 });
 
@@ -169,12 +183,30 @@ $('#purchase').on('click', () => {
 const loadOrderDetailsTable = () => {
     $("#OrderDetailTableBody").empty();
     Order_Array.forEach((order) => {
+        // Calculate total amount based on price and quantity
+        const totalAmount = order.price * order.getqty;
+
+        // Get the discount value and parse it to a number
+        const discount = parseFloat($('#discout').val())
+
+        // Final total after applying the discount
+        const finalTotal = totalAmount - discount;
+
         const data = `<tr>
             <td>${order.cusid}</td>
             <td>${order.orderdate}</td>
             <td>${order.cusid}</td>
-            <td>${totalElement.val()}</td>
+            <td>${finalTotal.toFixed(2)}</td> <!-- Format as needed -->
         </tr>`;
         $("#OrderDetailTableBody").append(data);
     });
 };
+
+const updateqyt = () =>{
+
+    Order_Array.forEach((o) =>{
+      const uq = o.qty - o.getqty
+        quantity.val(uq)
+    })
+
+}

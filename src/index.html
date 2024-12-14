@@ -154,7 +154,6 @@
                 <input type="tel" class="form-control" id="phone" placeholder="Enter customer's phone number" required>
             </div>
             <br>
-
             <button type="button" class="btn btn-primary" id="save-customer">SAVE</button>
             <button type="button" class="btn btn-primary" id="update-customer" style="background-color: green">UPDATE</button>
             <button type="button" class="btn btn-primary" id="delete-customer" style="background-color: orange">DELETE</button>
@@ -251,21 +250,22 @@
             <input type="date" class="form-control" id="orderDate">
         </div>
 
+        <h4>Select Your Customer:</h4>
         <div class="form-group">
             <label for="customerId">Customer ID:</label>
             <select class="form-control" id="customerId" required>
-                <option value="text" disabled selected>Select Customer ID</option>
+                <option value="" disabled selected>Select Customer ID</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="orderCustomer">Customer Name:</label>
-            <input type="tel" class="form-control" id="orderCustomer" required>
+            <input type="text" class="form-control" id="orderCustomer" placeholder="Customer Name" required>
         </div>
 
         <div class="form-group">
             <label for="orderphone">Phone Number:</label>
-            <input type="tel" class="form-control" id="orderphone" required>
+            <input type="text" class="form-control" id="orderphone" placeholder="phone number" required>
         </div>
 
         <h4>Select Your Items:</h4>
@@ -296,7 +296,6 @@
             <input type="number" class="form-control" id="Getquantity" required>
         </div>
 
-
         <br>
         <button type="button" class="btn btn-primary" id="order-save">Add to Cart</button>
     </form>
@@ -323,28 +322,27 @@
 
     <div class="balance mt-3">
         <label for="discout" class="form-label">Discount</label>
-        <input type="number" class="form-control" id="discout" >
+        <input type="number" class="form-control" id="discout">
     </div>
 
     <br>
     <button type="button" class="btn btn-primary" id="purchase">Purchase</button>
 
-
-
     <h1>Order Details</h1>
     <table class="table table-bordered mt-3" id="orderDetails">
         <thead>
         <tr>
-            <th id>Order ID</th>
+            <th>Order ID</th>
             <th>Date</th>
             <th>Customer ID</th>
             <th>Sub Total</th>
         </tr>
         </thead>
-        <tbody id="OrderDetailTableBody">
-        </tbody>
+        <tbody id="OrderDetailTableBody"></tbody>
     </table>
 </section>
+
+
 
 <!--===============================================================================================================================-->
 <script src="lib/jquery-3.7.1.min.js"></script>
@@ -369,7 +367,6 @@
             });
         }
 
-        // Add an event listener for hash changes
         window.addEventListener("hashchange", navigate);
 
         navigate();
